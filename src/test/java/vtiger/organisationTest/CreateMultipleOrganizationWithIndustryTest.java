@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import vitiger.GenericUtility.ExcelFileLibrary;
 import vitiger.GenericUtility.JavaLibrary;
 import vitiger.GenericUtility.PropertyFileLibrary;
@@ -21,12 +22,14 @@ import vitiger.GenericUtility.WebDriverLibrary;
  *
  */
 public class CreateMultipleOrganizationWithIndustryTest {
+	ExcelFileLibrary eLib = new ExcelFileLibrary();
 	@Test(dataProvider = "MultilpeOrganization")
+	//@Test
 	public void createMultipleOrgTest(String OrgName, String IndustryType) throws IOException {
 		// step 1: create object of all library
 		JavaLibrary jLib = new JavaLibrary();
 		PropertyFileLibrary pLib = new PropertyFileLibrary();
-		ExcelFileLibrary eLib = new ExcelFileLibrary();
+		//ExcelFileLibrary eLib = new ExcelFileLibrary();
 		WebDriverLibrary wLib = new WebDriverLibrary();
 
 		// step 2: read all required data
@@ -41,10 +44,10 @@ public class CreateMultipleOrganizationWithIndustryTest {
 
 		// step 3:launch the browser
 		if (BROWSER.equalsIgnoreCase("chrome")) {
-			// WebDriverManager.chromedriver().setup();
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (BROWSER.equalsIgnoreCase("firefox")) {
-			// WebDriverManager.firefoxdriver().setup();
+			 WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else {
 			System.out.println("Invalid browser name");
@@ -82,9 +85,9 @@ public class CreateMultipleOrganizationWithIndustryTest {
 
 	}
 
-	//@DataProvider(name = "MultilpeOrganization")
-	//public Object[][] getData() throws EncryptedDocumentException, IOException {
-	//	Object[][] data = eLib.readMultipleData("MultilpeOrganization");
-		//return data;
-	//}
+	 @DataProvider(name = "MultilpeOrganization")
+	 public Object[][] getData() throws EncryptedDocumentException, IOException 
+	 { Object[][] data =eLib.readMultipleData("MultilpeOrganization");
+	 return data; }
+	 
 }

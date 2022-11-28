@@ -2,9 +2,9 @@ package vtiger.Practice;
 
 import org.testng.annotations.Test;
 
-public class ReadDataFromCmdLine {
+public class ReadDataFromCmdLineTest {
 @Test
-public void readData() {
+public void readDatatest() {
 	String BROWSER = System.getProperty("browser");
 	String USERNAME = System.getProperty("username");
 	System.out.println(BROWSER);
